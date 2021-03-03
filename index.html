@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess2D</title>
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+        <h1>♟️ Chess2D</h1>
+    </div>
+
+    <hr>
+
+    <div class="container-fluid">
+        <h3 class="mb-3">Play</h3>
+        <div class="row gy-3">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Play Offline</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Game settings</h5>
+                        <form id="createGameFormLocal">
+                            <!-- TODO: add custom starting positions -->
+                            <div class="mb-3 mt-3">
+                                <h6>Timer Settings</h6>
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" id="timerSwitchLocal" class="form-check-input" autocomplete="off">
+                                    <label for="timerSwitchLocal" class="form-check-label">Enabled</label>
+                                </div>
+                                <label for="timerRangeLocal" id="timerRangeDisplayLocal" class="form-label">Timer:
+                                    3m</label>
+                                <input type="range" id="timerRangeLocal" class="form-range" min="0.25" max="20"
+                                    step="0.25" value="3" disabled>
+                                <label for="incrementRangeLocal" id="incrementRangeDisplayLocal"
+                                    class="form-label">Increment:
+                                    2s</label>
+                                <input type="range" id="incrementRangeLocal" class="form-range" min="1" max="20"
+                                    step="1" value="2" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <h6>Starting Side</h6>
+                                <input type="radio" id="sideWhiteLocal" class="btn-check" name="startingSideLocal"
+                                    autocomplete="off" checked>
+                                <label for="sideWhiteLocal" class="btn btn-outline-secondary">White</label>
+                                <input type="radio" id="sideRandomLocal" class="btn-check" name="startingSideLocal"
+                                    autocomplete="off">
+                                <label for="sideRandomLocal" class="btn btn-outline-secondary">Random</label>
+                                <input type="radio" id="sideBlackLocal" class="btn-check" name="startingSideLocal"
+                                    autocomplete="off">
+                                <label for="sideBlackLocal" class="btn btn-outline-secondary">Black</label>
+                            </div>
+                        </form>
+                        <button id="createGameLocalBtn" class="btn btn-primary">Play Game</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Join Online Game</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Game Code</h5>
+                        <form id="joinGameForm" class="needs-validation">
+                            <div class="mb-3">
+                                <input type="text" id="gameCode" class="form-control" aria-describedby="gameCodeDesc"
+                                    autocomplete="off" required>
+                                <div id="gameCodeDesc" class="form-text">8-character game code</div>
+                                <div id="joinGameFail" class="invalid-feedback">
+                                    Game code can't contain special characters and must be of length 8.
+                                </div>
+                            </div>
+                        </form>
+                        <button id="joinGameBtn" class="btn btn-primary">Join Game</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Create Online Game</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Game Settings</h5>
+                        <form id="createGameForm">
+                            <!-- TODO: add custom starting positions -->
+                            <div class="mb-3 mt-3">
+                                <h6>Timer Settings</h6>
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" name="timerEnable" id="timerSwitch" class="form-check-input" autocomplete="off">
+                                    <label for="timerSwitch" class="form-check-label">Enabled</label>
+                                </div>
+                                <label for="timerRange" id="timerRangeDisplay" class="form-label">Timer: 3m</label>
+                                <input type="range" name="timerValue" id="timerRange" class="form-range" min="0.25"
+                                    max="20" step="0.25" value="3" disabled>
+                                <label for="incrementRange" id="incrementRangeDisplay" class="form-label">Increment:
+                                    2s</label>
+                                <input type="range" name="incrementValue" id="incrementRange" class="form-range" min="1"
+                                    max="20" step="1" value="2" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <h6>Starting Side</h6>
+                                <input type="radio" id="sideWhite" class="btn-check" name="startingSide"
+                                    autocomplete="off" value="white">
+                                <label for="sideWhite" class="btn btn-outline-secondary">White</label>
+                                <input type="radio" id="sideRandom" class="btn-check" name="startingSide"
+                                    autocomplete="off" value="random" checked>
+                                <label for="sideRandom" class="btn btn-outline-secondary">Random</label>
+                                <input type="radio" id="sideBlack" class="btn-check" name="startingSide"
+                                    autocomplete="off" value="black">
+                                <label for="sideBlack" class="btn btn-outline-secondary">Black</label>
+                            </div>
+                        </form>
+                        <button id="createGameBtn" class="btn btn-primary">Create Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <hr>
+        <h3>Live Games</h3>
+    </div>
+
+    <div class="container-fluid">
+        <hr>
+        <h3>About</h3>
+        <p>
+            Chess2D is an open-source chess game created from scratch by <a href="https://lukeathedev.github.io/home/"
+                target="_blank">me</a>.
+            <br>
+            It uses Bootstrap, JQuery, p5.js, Express and socket.io.
+            <br>
+            You can find more information about it <a href="https://github.com/lukeathedev" target="_blank">here</a>.
+        </p>
+    </div>
+
+
+    <!-- Bootstrap / JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $("#timerSwitch").on("input change", () => {
+            if ($("#timerSwitch").prop("checked")) {
+                $("#timerRange").prop("disabled", false);
+                $("#incrementRange").prop("disabled", false);
+            }
+            else {
+                $("#timerRange").prop("disabled", true);
+                $("#incrementRange").prop("disabled", true);
+            }
+        })
+        $("#timerRange").on("input change", () => {
+            $("#timerRangeDisplay").text("Timer: " + $("#timerRange").val() + "m");
+        })
+        $("#incrementRange").on("input change", () => {
+            $("#incrementRangeDisplay").text("Increment: " + $("#incrementRange").val() + "s");
+        })
+
+        $("#timerSwitchLocal").on("input change", () => {
+            if ($("#timerSwitchLocal").prop("checked")) {
+                $("#timerRangeLocal").prop("disabled", false);
+                $("#incrementRangeLocal").prop("disabled", false);
+            }
+            else {
+                $("#timerRangeLocal").prop("disabled", true);
+                $("#incrementRangeLocal").prop("disabled", true);
+            }
+        })
+        $("#timerRangeLocal").on("input change", () => {
+            $("#timerRangeDisplayLocal").text("Timer: " + $("#timerRangeLocal").val() + "m");
+        })
+        $("#incrementRangeLocal").on("input change", () => {
+            $("#incrementRangeDisplayLocal").text("Increment: " + $("#incrementRangeLocal").val() + "s");
+        })
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var client = io();
+
+        client.on("redirect", (url) => {
+            window.location.href = url;
+        });
+
+        function pushGame(settings, local) {
+            let gameSettings = {
+                "local": false,
+                "timerEnable": false,
+                "timerValue": 180,
+                "incrementValue": 7,
+                "startingSide": "random"
+            };
+
+            // Get settings
+            gameSettings.timerEnable = false; // Reset setting
+            gameSettings.local = local;
+            for (const setting of settings) {
+                switch (setting.name) {
+                    case "timerEnable":
+                        gameSettings.timerEnable = true;
+                        break;
+                    case "timerValue":
+                        gameSettings.timerValue = setting.value * 60;
+                        break;
+                    case "incrementValue":
+                        gameSettings.incrementValue = Number(setting.value);
+                        break;
+                    case "startingSide":
+                        gameSettings.startingSide = setting.value;
+                        break;
+                }
+            }
+
+            client.emit("createGame", gameSettings);
+
+            return gameSettings;
+        }
+
+        function joinGame(gameId) {
+            if (!/[a-zA-Z0-9]{8}/gm.test(gameId)) {
+                $("#joinGame").addClass("is-invalid");
+                $("#joinGameFail").addClass("d-block");
+
+                return false;
+            }
+
+            $("#joinGameForm").addClass("was-validated");
+            $("#joinGameFail").removeClass("d-block");
+
+            window.location.href = "/game/" + gameId;
+        }
+
+        // Bind buttons
+        $("#createGameBtn").on("click", () => {
+            let settings = $("#createGameForm").serializeArray();
+            console.log(pushGame(settings, false));
+        });
+
+        $("#createGameLocalBtn").on("click", () => {
+            // Get settings
+            let settings = $("#createGameFormLocal").serializeArray();
+            console.log(pushGame(settings, true));
+        });
+
+        $("#joinGameBtn").on("click", () => {
+            let gameId = $("#gameCode").val();
+
+            joinGame(gameId);
+        });
+
+        // Pressing Enter on input shouldn't refresh the page (send form)
+        $("#joinGameForm").keypress((e) => {
+            if (e.which == "13") {
+                e.preventDefault();
+
+                let gameId = $("#gameCode").val();
+                joinGame(gameId);
+            }
+        })
+
+        // Send settings to server
+    </script>
+</body>
+
+</html>
