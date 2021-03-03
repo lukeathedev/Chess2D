@@ -14,7 +14,13 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bg-dark text-white">
+    <style>
+        .bg-header-dark {
+            background-color: #343a40;
+        }
+    </style>
+
     <div class="container-fluid mt-3">
         <h1>♟️ Chess2D</h1>
     </div>
@@ -26,8 +32,8 @@
         <div class="row gy-3">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">Play Offline</div>
-                    <div class="card-body">
+                    <div class="card-header bg-header-dark">Play Offline</div>
+                    <div class="card-body bg-dark">
                         <h5 class="card-title">Game settings</h5>
                         <form id="createGameFormLocal">
                             <!-- TODO: add custom starting positions -->
@@ -66,8 +72,8 @@
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">Join Online Game</div>
-                    <div class="card-body">
+                    <div class="card-header bg-header-dark">Join Online Game</div>
+                    <div class="card-body bg-dark">
                         <h5 class="card-title">Game Code</h5>
                         <form id="joinGameForm" class="needs-validation">
                             <div class="mb-3">
@@ -85,8 +91,8 @@
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">Create Online Game</div>
-                    <div class="card-body">
+                    <div class="card-header bg-header-dark">Create Online Game</div>
+                    <div class="card-body bg-dark">
                         <h5 class="card-title">Game Settings</h5>
                         <form id="createGameForm">
                             <!-- TODO: add custom starting positions -->
