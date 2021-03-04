@@ -15,8 +15,31 @@
 </head>
 
 <body class="bg-dark text-white">
-    <h1>game page</h1>
-    <h6 id="gameId"></h6>
+
+    <style>
+        #canvasContainer canvas {
+            border-radius: 5px;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+    </style>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-4">♟️ Chess2D</h1>
+                <p class="lead">It's WIP chess.</p>
+                <h6 id="gameId"></h6>
+                <hr class="my-4">
+            </div>
+            <div class="col-lg-6" id="canvasContainer">
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
 
     <!-- Bootstrap / JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -24,6 +47,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
+
+    <script src="/game/js/p5.min.js"></script>
+    <script src="/game/js/p5.sound.min.js"></script>
+
+    <script src="/game/js/class/Utils.js"></script>
+    <script src="/game/js/class/Piece.js"></script>
+    <script src="/game/js/class/Board.js"></script>
+    <script src="/game/js/canvas.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
